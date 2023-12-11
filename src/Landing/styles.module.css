@@ -25,3 +25,89 @@
 	cursor: pointer;
 	margin-right: 20px;
 }
+
+/* Add the following styles to your existing styles.module.css file */
+
+.main_container {
+    position: relative; /* Add this line to position the modal relative to the main container */
+  }
+  
+  /* Styles for the middle box */
+  .middle_box {
+    width: 60%;
+    margin: 50px auto; /* Center the middle box */
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .middle_box h2 {
+    color: #3bb19b;
+  }
+  
+  .middle_box p {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* File input styles */
+  .middle_box input[type="file"] {
+    display: none; /* Hide the default file input */
+  }
+  
+  /* Custom file input style */
+  .file_input_label {
+    display: inline-block;
+    background-color: #3bb19b;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Button style for resume upload */
+  .green_btn {
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    background-color: #3bb19b;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  /* Modal styles */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal_content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #3bb19b;
+    cursor: pointer;
+  }
+  

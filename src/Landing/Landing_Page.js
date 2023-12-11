@@ -47,19 +47,22 @@ const Landing_Page = () => {
 
       {/* Middle box for resume upload */}
       <div className={styles.middle_box}>
-        <h2>Upload Your Resume</h2>
-        <p>Get top 3 career choice predictions based on your resume.</p>
-        {/* Add a file input for resume upload */}
-        <input
-          type="file"
-          accept=".pdf,.docx"
-          onChange={handleFileChange}
-        />
-        {/* Add a button to handle resume upload */}
-        <button className={styles.green_btn} onClick={handleResumeUpload}>
-          Upload Resume
-        </button>
-      </div>
+            <h2>Upload Your Resume</h2>
+            <p>Get top 3 career choice predictions based on your resume.</p>
+            {/* Add a file input for resume upload */}
+            <label className={styles.file_input_label}>
+                Choose File
+                <input
+                type="file"
+                accept=".pdf,.docx"
+                onChange={handleFileChange}
+                />
+            </label>
+            {/* Add a button to handle resume upload */}
+            <button className={styles.green_btn} onClick={handleResumeUpload}>
+                Upload Resume
+            </button>
+        </div>
 
       {/* Modal for displaying career choices */}
       {showCareerChoices && (
