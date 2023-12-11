@@ -22,10 +22,27 @@ const Landing_Page = () => {
   };
 
   const handleResumeUpload = () => {
-    // Handle the logic for uploading the selected resume file
-    // For simplicity, let's show some arbitrary career choices in a modal
-    setShowCareerChoices(true);
+    // Create a FormData object to send the file
+    const formData = new FormData();
+    formData.append('resume', selectedFile);
+  
+    // Send a POST request to the Flask server
+    fetch('http://127.0.0.1:5000/upload', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response from the server (predictions)
+      console.log(data);
+      // For simplicity, let's show some arbitrary career choices in a modal
+      setShowCareerChoices(true);
+    })
+    .catch(error => {
+      console.error('Error uploading resume:', error);
+    });
   };
+  
 
   const handleCloseModal = () => {
     setShowCareerChoices(false);
