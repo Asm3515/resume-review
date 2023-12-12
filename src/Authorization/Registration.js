@@ -1,17 +1,10 @@
-import { useCallback, useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import Logo from '../Images/Logo.png'
-import '../Css/Main.css'
 import axios from 'axios';
-     
-
-const paths = {
-  Home: "/",
-};
-
-
+import styles from "../Css/styles.module.css";
 
 const Registration = () => {
+  const navigate = useNavigate()
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
@@ -24,28 +17,24 @@ const Registration = () => {
     Last_name: lastName,
     email: email,
     password: password,
-    Phone_number: phoneNo    
-    
-    // confirmPassword,
+    Phone_number: phoneNo
   };
-
-  const onHaveAnAccoutSignClick = useCallback(() => {
-    // Please sync "Desktop - 8" to the project
-  }, []);
 
   const handleFormSubmit = useCallback(async (event) => {
     event.preventDefault();
-        try {
-          const response = await axios.post(
-            "http://localhost:3000/user/signup",
-            formData
-          );
-          console.log(response.data);
-          alert("User Registered Sucessfully");
-          //  navigate("/login");
-        } catch (error) {
-          console.error("Signup Error:", error);
-        }
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/user/signup",
+        formData
+      );
+      console.log(response.data);
+      alert("User Registered Successfully");
+      // You can navigate to the login page or any other page after successful registration
+      // Example:
+      navigate("/landing-page")
+    } catch (error) {
+      console.error("Signup Error:", error);
+    }
 
     // Clear form fields
     setFirstName("");
@@ -56,94 +45,75 @@ const Registration = () => {
     setConfirmPassword("");
   }, [formData]);
 
-  const onHOMETextClick = useCallback(() => {
-    // Please sync "Desktop - 1" to the project
-  }, []);
-
   return (
-    <div className="desktop-4">
-      <b className="seet-lab"> SEET LAB</b>
-      <Link to={paths.Home} className="home" onClick={onHOMETextClick}>
-        HOME
-      </Link>
-      <div className="Header-container">
-        <p className="Header">
-          <b>Dr. Venkata Inukollu</b>
-        </p>
-        <p className="blank-line">&nbsp;</p>
-        <p className="blank-line">Assistant Professor</p>
-        <p className="blank-line">Department of Computer Science</p>
-        <p className="blank-line">Purdue University Fort Wayne</p>
-      </div>
-      <img className="image-2-icon" alt="" src="" />
-      <img className="desktop-4-child" alt="" src="/line-1.svg" />
-      <b className="Name-tag">Industry Collaboration :</b>
-      <div className="desktop-4-item">
-        <form className="registration-form" onSubmit={handleFormSubmit}>
-          <div className="sign-up">Sign Up</div>
-          <div className="form-group">
-            <label htmlFor="firstName">First Name:</label>
+    <div className={styles.login_container}>
+      <div className={styles.login_form_container}>
+        <div className={styles.left}>
+          <form className={styles.form_container} onSubmit={handleFormSubmit}>
+            <h1>Create an Account</h1>
             <input
-              type="string"
-              id="firstName"
+              type="text"
+              placeholder="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
+              required
+              className={styles.input}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="lastName">Last Name:</label>
             <input
               type="text"
-              id="lastName"
+              placeholder="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
+              required
+              className={styles.input}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="phoneNo">Phone No:</label>
-            <input
-              type="text"
-              id="phoneNo"
-              value={phoneNo}
-              onChange={(e) => setPhoneNo(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
             <input
               type="email"
-              id="email"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+              className={styles.input}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              value={phoneNo}
+              onChange={(e) => setPhoneNo(e.target.value)}
+              required
+              className={styles.input}
+            />
             <input
               type="password"
-              id="password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
+              className={styles.input}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password:</label>
             <input
               type="password"
-              id="confirmPassword"
+              placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              className={styles.input}
             />
-          </div>
-          <button type="submit" className="register">Register</button>
-        </form>
+            <button type="submit" className={styles.green_btn}>
+              Sign Up
+            </button>
+            
+          </form>
+        </div>
+        <div className={styles.right}>
+          <h1>Already have an account</h1>
+          <Link to="/login">
+            <button type="button" className={styles.white_btn}>
+              LogIn
+            </button>
+          </Link>
+        </div>
       </div>
-      <b className="sweet-water-fortwayne-container">
-        <p className="sweet-water-fortwayne">&nbsp;</p>
-        <p className="sweet-water-fortwayne"></p>
-        <p className="sweet-water-fortwayne">&nbsp;</p>
-        <p className="sweet-water-fortwayne">&nbsp;</p>
-      </b>
     </div>
   );
 };
